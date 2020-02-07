@@ -13,8 +13,9 @@
 <body >
     <form id="form" runat="server">
             <h1>Online Loan Management System</h1>
-            <asp:HyperLink ID="SignupLink" runat="server" Text="Register" NavigateUrl="~/Registration.aspx"></asp:HyperLink><br />            
-            <asp:HyperLink ID="LoginLink" style="text-align:center;" runat="server" Text="Login" NavigateUrl="~/Login.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="homeLink" runat="server" Text="Home" NavigateUrl="~/Home.aspx"></asp:HyperLink>
+            <asp:HyperLink ID="signupLink" runat="server" Text="Register" NavigateUrl="~/Registration.aspx"></asp:HyperLink><br />            
+            <asp:HyperLink ID="loginLink" style="text-align:center;" runat="server" Text="Login" NavigateUrl="~/Login.aspx"></asp:HyperLink>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
     </form>

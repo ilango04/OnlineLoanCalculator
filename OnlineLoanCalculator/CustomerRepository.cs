@@ -62,7 +62,7 @@ namespace OnlineLoanCalculator
             SqlCommand command;
             SqlDataAdapter adapter = new SqlDataAdapter();
             connection.Open();
-            command = new SqlCommand("insertCustomerDetails", connection);
+            command = new SqlCommand("sp_insertCustomerDetails", connection);
             command.CommandType = CommandType.StoredProcedure;
             try
             {

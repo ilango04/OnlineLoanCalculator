@@ -33,22 +33,31 @@ namespace OnlineLoanCalculator
         protected global::System.Web.UI.HtmlControls.HtmlForm form;
 
         /// <summary>
-        /// SignupLink control.
+        /// homeLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink SignupLink;
+        protected global::System.Web.UI.WebControls.HyperLink homeLink;
 
         /// <summary>
-        /// LoginLink control.
+        /// signupLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LoginLink;
+        protected global::System.Web.UI.WebControls.HyperLink signupLink;
+
+        /// <summary>
+        /// loginLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink loginLink;
 
         /// <summary>
         /// ContentPlaceHolder control.

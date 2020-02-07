@@ -168,13 +168,13 @@ namespace OnlineLoanCalculator
         protected global::System.Web.UI.WebControls.RegularExpressionValidator addressRegularExpressionValidator;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// addressRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator addressRequiredFieldValidator;
 
         /// <summary>
         /// txtPincode control.
@@ -186,6 +186,24 @@ namespace OnlineLoanCalculator
         protected global::System.Web.UI.WebControls.TextBox txtPincode;
 
         /// <summary>
+        /// pincodeRegularExpressionValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator pincodeRegularExpressionValidator;
+
+        /// <summary>
+        /// pincodeRequiredFieldValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator pincodeRequiredFieldValidator;
+
+        /// <summary>
         /// txtNumber control.
         /// </summary>
         /// <remarks>
@@ -195,22 +213,22 @@ namespace OnlineLoanCalculator
         protected global::System.Web.UI.WebControls.TextBox txtNumber;
 
         /// <summary>
-        /// RegularExpressionValidator control.
+        /// mobileRegularExpressionValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator mobileRegularExpressionValidator;
 
         /// <summary>
-        /// valid control.
+        /// mobileRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator valid;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator mobileRequiredFieldValidator;
 
         /// <summary>
         /// txtPassword control.
