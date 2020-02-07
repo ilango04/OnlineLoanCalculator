@@ -1,0 +1,22 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="OnlineLoanCalculator.Master" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        </asp:ContentPlaceHolder>
+                 <link rel="stylesheet" type="text/css" href="Design.css" />
+    
+</head>
+<body >
+    <form id="form" runat="server">
+            <h1>Online Loan Management System</h1>
+            <asp:HyperLink ID="SignupLink" runat="server" Text="Register" NavigateUrl="~/Registration.aspx"></asp:HyperLink><br />            
+            <asp:HyperLink ID="LoginLink" style="text-align:center;" runat="server" Text="Login" NavigateUrl="~/Login.aspx"></asp:HyperLink>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

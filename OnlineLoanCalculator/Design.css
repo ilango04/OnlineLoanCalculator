@@ -1,0 +1,24 @@
+﻿body 
+{
+    background-image: url('images/loan.png');
+    background-size:100%;
+    background-repeat:no-repeat;
+}
+h1
+{
+    text-align:center;
+    color:orangered;
+}
+#signupLink
+{
+    margin:700px;
+}
+#loginLink
+{
+    margin:760px;
+}
+.signUp
+{
+    margin:500px;
+    margin-top:50px;
+}
