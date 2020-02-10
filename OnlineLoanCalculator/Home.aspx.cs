@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Data;
-using System.Data.SqlClient;
+using OnlineLoanCalculator_EL;
+using OnlineLoanCalculator_BL;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 namespace OnlineLoanCalculator
 {
     public partial class Home : System.Web.UI.Page
     {
-        CustomerRepository customerRepository = new CustomerRepository();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -16,25 +15,14 @@ namespace OnlineLoanCalculator
             }
         }
         public void BindCustomerDetails()
-        {           
-            customerRepository.DisplayDetails(GridViewId);
+        {
+            new CustomerBL().DisplayCustomerDetails(GridViewId);
         }
         protected void GridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int customerId = Convert.ToInt32(GridViewId.DataKeys[e.RowIndex].Values[0]);
-            string connectionString = @"Data Source=LAPTOP-S25DNCVE\SQLEXPRESS;Database=Project;Integrated Security=SSPI";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand("sp_DeleteCustomers"))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@id", customerId);
-                    command.Connection = connection;
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
-            }
+            if(new CustomerBL().DeleteCustomer(customerId)==true)
+                Response.Write("<script>alert('Successfully Deleted')</script>");
             BindCustomerDetails();
         }
         protected void GridView_RowEditing(object sender, GridViewEditEventArgs e)
@@ -61,29 +49,8 @@ namespace OnlineLoanCalculator
             string password = (GridViewId.Rows[e.RowIndex].FindControl("txtPassword") as TextBox).Text;
             int id = Convert.ToInt32(GridViewId.DataKeys[e.RowIndex].Values[0]); ;
             Customer customer = new Customer(name,Convert.ToDateTime(dateofbirth), emailId, employmentType,int.Parse(salary), company, address,long.Parse(pincode),long.Parse(mobilenumber), password);
-            string connectionString = @"Data Source=LAPTOP-S25DNCVE\SQLEXPRESS;Database=Project;Integrated Security=SSPI";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand("sp_UpdateCustomers"))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@id", id);
-                    command.Parameters.AddWithValue("@Name", customer.name);
-                    command.Parameters.AddWithValue("@DateOfBirth", customer.dateOfBirth);
-                    command.Parameters.AddWithValue("@EmailId", customer.emailID);
-                    command.Parameters.AddWithValue("@type", customer.employmentType);
-                    command.Parameters.AddWithValue("@salary", customer.monthlySalary);
-                    command.Parameters.AddWithValue("@company", customer.company);
-                    command.Parameters.AddWithValue("@address", customer.address);
-                    command.Parameters.AddWithValue("@pincode", customer.pincode);
-                    command.Parameters.AddWithValue("@mobilenumber",customer.mobileNumber);
-                    command.Parameters.AddWithValue("@password", customer.password);
-                    command.Connection = connection;
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                    connection.Close();
-                }
-            }
+            if(new CustomerBL().UpdateCustomer(customer,id)==true)
+                Response.Write("<script>alert('Successfully Updated')</script>");
             GridViewId.EditIndex = -1;
             BindCustomerDetails();
         }
@@ -100,7 +67,8 @@ namespace OnlineLoanCalculator
             string mobilenumber = (GridViewId.FooterRow.FindControl("mobileId") as TextBox).Text;
             string password = (GridViewId.FooterRow.FindControl("PasswordId") as TextBox).Text;
             Customer customer = new Customer(name, Convert.ToDateTime(dateofbirth), emailId, employmentType, int.Parse(salary), company, address, long.Parse(pincode), long.Parse(mobilenumber), password);
-            customerRepository.AddCustomer(customer);
+            if(new CustomerBL().AddCustomer(customer)==true)
+                Response.Write("<script>alert('Successfully Added')</script>");
             GridViewId.EditIndex = -1;
             BindCustomerDetails();
         }

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="OnlineLoanCalculator.Home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs"
+    Inherits="OnlineLoanCalculator.Home"%>
 
 <asp:Content ID="FirstContent" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

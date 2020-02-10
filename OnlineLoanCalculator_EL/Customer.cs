@@ -1,11 +1,6 @@
 ﻿using System;
-using OnlineLoanCalculator;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OnlineLoanCalculator
+namespace OnlineLoanCalculator_EL
 {
     public class Customer
     {

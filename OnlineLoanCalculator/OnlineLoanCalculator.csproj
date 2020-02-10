@@ -77,8 +77,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Customer.cs" />
-    <Compile Include="CustomerRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -125,6 +123,20 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineLoanCalculator_BL\OnlineLoanCalculator_BL.csproj">
+      <Project>{fe02b1ab-d182-4150-a22d-96fdaff1ed69}</Project>
+      <Name>OnlineLoanCalculator_BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineLoanCalculator_DAL\OnlineLoanCalculator_DAL.csproj">
+      <Project>{b197aecd-d22c-4130-969e-55ba1f91a28f}</Project>
+      <Name>OnlineLoanCalculator_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineLoanCalculator_EL\OnlineLoanCalculator_EL.csproj">
+      <Project>{a0b89782-e062-4c24-998d-4513acd71fac}</Project>
+      <Name>OnlineLoanCalculator_EL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

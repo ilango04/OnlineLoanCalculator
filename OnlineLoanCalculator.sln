@@ -5,6 +5,12 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLoanCalculator", "OnlineLoanCalculator\OnlineLoanCalculator.csproj", "{9E012A08-58DF-4ACA-A114-0965FD52DE7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLoanCalculator_BL", "OnlineLoanCalculator_BL\OnlineLoanCalculator_BL.csproj", "{FE02B1AB-D182-4150-A22D-96FDAFF1ED69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLoanCalculator_DAL", "OnlineLoanCalculator_DAL\OnlineLoanCalculator_DAL.csproj", "{B197AECD-D22C-4130-969E-55BA1F91A28F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineLoanCalculator_EL", "OnlineLoanCalculator_EL\OnlineLoanCalculator_EL.csproj", "{A0B89782-E062-4C24-998D-4513ACD71FAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{9E012A08-58DF-4ACA-A114-0965FD52DE7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E012A08-58DF-4ACA-A114-0965FD52DE7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E012A08-58DF-4ACA-A114-0965FD52DE7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE02B1AB-D182-4150-A22D-96FDAFF1ED69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE02B1AB-D182-4150-A22D-96FDAFF1ED69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE02B1AB-D182-4150-A22D-96FDAFF1ED69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE02B1AB-D182-4150-A22D-96FDAFF1ED69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B197AECD-D22C-4130-969E-55BA1F91A28F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B197AECD-D22C-4130-969E-55BA1F91A28F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B197AECD-D22C-4130-969E-55BA1F91A28F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B197AECD-D22C-4130-969E-55BA1F91A28F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0B89782-E062-4C24-998D-4513ACD71FAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0B89782-E062-4C24-998D-4513ACD71FAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0B89782-E062-4C24-998D-4513ACD71FAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0B89782-E062-4C24-998D-4513ACD71FAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

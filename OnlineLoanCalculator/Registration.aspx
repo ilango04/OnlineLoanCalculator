@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="OnlineLoanCalculator.Registration" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="OnlineLoanCalculator.Registration"%>
 <asp:Content ID="FirstContent" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="SecondContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -14,7 +14,7 @@ ErrorMessage="Please enter a user name" ForeColor="Red"></asp:RequiredFieldValid
             <asp:TableRow>
                 <asp:TableCell>DateOfBirth:</asp:TableCell>
                 <asp:TableCell><asp:TextBox ID="txtDate" placeholder="dd-mm-yyyy" TextMode="Date" size="16" runat="server"></asp:TextBox>
-                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDate" ValidationExpression="(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"
+                <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDate" ValidationExpression="(([0][1-9]|[2][0-9]|[3][0-1]|[1-9]|[1][0-9])/([0][1-9]|[1][0-2]|[1-9])/([1-2][0-9][0-9][0-9]|[0-9][0-9]))"
     ErrorMessage="Invalid date format." ></asp:RegularExpressionValidator>
                 <asp:RequiredFieldValidator ID="dateRequiredFieldValidator" runat="server" ControlToValidate="txtName"   
 ErrorMessage="Please enter a user name" ForeColor="Red"></asp:RequiredFieldValidator>  

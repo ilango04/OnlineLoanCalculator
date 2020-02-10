@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Data.SqlClient;                         //Data providers for SqlClient
-using System.Configuration;
-using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
+using OnlineLoanCalculator_EL;
+using OnlineLoanCalculator_DAL;
 namespace OnlineLoanCalculator
 {
     public partial class Registration : System.Web.UI.Page
@@ -40,13 +33,8 @@ namespace OnlineLoanCalculator
             password = txtPassword.Text;
             Customer customer = new Customer(customerName, dateOfBirth, emailID, employmentType, salary, company, address, pincode, mobileNumber, password);
             CustomerRepository customerRepository = new CustomerRepository();
-            customerRepository.InsertDetails(customer);
-            if(customerRepository.rows>=0)
+            if(customerRepository.InsertDetails(customer)==true)
                 Response.Write("<script>alert('Registration successfully your userid is')</script>");
-            else
-                Response.Write("<script>alert('Data inserted successfully'+)</script>");
-
-            //Response.Redirect("Login.aspx.cs");
         }
     }
 }
