@@ -1,107 +1,108 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 namespace OnlineLoanCalculator
 {
     public partial class Home : System.Web.UI.Page
     {
+        CustomerRepository customerRepository = new CustomerRepository();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.IsPostBack)
+            if (!Page.IsPostBack)
             {
-                this.BindGrid();
+                BindCustomerDetails();
             }
         }
-        public void BindGrid()
+        public void BindCustomerDetails()
+        {           
+            customerRepository.DisplayDetails(GridViewId);
+        }
+        protected void GridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            int customerId = Convert.ToInt32(GridViewId.DataKeys[e.RowIndex].Values[0]);
             string connectionString = @"Data Source=LAPTOP-S25DNCVE\SQLEXPRESS;Database=Project;Integrated Security=SSPI";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("select id,name,current_company,monthly_salary from customer"))
+                using (SqlCommand command = new SqlCommand("sp_DeleteCustomers"))
                 {
-                    using (SqlDataAdapter adapter = new SqlDataAdapter())
-                    {
-                        cmd.Connection = connection;
-                        adapter.SelectCommand = cmd;
-                        using (DataTable data = new DataTable())
-                        {
-                            adapter.Fill(data);
-                            GridView1.DataSource = data;
-                            GridView1.DataBind();
-                        }
-                    }
-                }
-            }
-        }
-        protected void OnPaging(object sender, GridViewPageEventArgs e)
-        {
-            GridView1.PageIndex = e.NewPageIndex;
-            this.BindGrid();
-        }
-        protected void RowEditing(object sender, GridViewEditEventArgs e)
-        {
-           
-            GridView1.EditIndex = e.NewEditIndex;
-            this.BindGrid();
-        }
-        protected void RowUpdating(object sender, GridViewUpdateEventArgs e)
-        {
-            GridViewRow row = GridView1.Rows[e.RowIndex];
-            int customerId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-            string name = (row.Cells[2].Controls[0] as TextBox).Text;
-            string company = (row.Cells[3].Controls[0] as TextBox).Text;
-            int salary = Convert.ToInt32((row.Cells[3].Controls[0] as TextBox).Text);
-            string connectionString = @"Data Source=LAPTOP-S25DNCVE\SQLEXPRESS;Database=Project;Integrated Security=SSPI";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand("UPDATE customer SET name = @Name, current_company=@company,monthly_salary=@salary WHERE id = @CustomerId"))
-                {
-                    command.Parameters.AddWithValue("@CustomerId",customerId);
-                    command.Parameters.AddWithValue("@Name", name);
-                    command.Parameters.AddWithValue("@company", company);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@id", customerId);
                     command.Connection = connection;
                     connection.Open();
                     command.ExecuteNonQuery();
                     connection.Close();
                 }
             }
-            GridView1.EditIndex = -1;
-            this.BindGrid();
+            BindCustomerDetails();
         }
-        protected void RowCancelingEdit(object sender, EventArgs e)
+        protected void GridView_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            GridView1.EditIndex = -1;
-            this.BindGrid();
+            GridViewId.EditIndex = e.NewEditIndex;
+            BindCustomerDetails();
         }
-        protected void RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
-            int customerId = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
+            GridViewId.EditIndex = -1;
+            BindCustomerDetails();
+        }
+        protected void GridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            string name = (GridViewId.Rows[e.RowIndex].FindControl("txtName") as TextBox).Text;
+            string dateofbirth = (GridViewId.Rows[e.RowIndex].FindControl("txtBirth") as TextBox).Text;
+            string emailId = (GridViewId.Rows[e.RowIndex].FindControl("txtEmail") as TextBox).Text;
+            string employmentType = (GridViewId.Rows[e.RowIndex].FindControl("txtType") as TextBox).Text;
+            string salary = (GridViewId.Rows[e.RowIndex].FindControl("txtSalary") as TextBox).Text;
+            string company = (GridViewId.Rows[e.RowIndex].FindControl("txtCompany") as TextBox).Text;
+            string address = (GridViewId.Rows[e.RowIndex].FindControl("txtAddress") as TextBox).Text;
+            string pincode = (GridViewId.Rows[e.RowIndex].FindControl("txtPincode") as TextBox).Text;
+            string mobilenumber = (GridViewId.Rows[e.RowIndex].FindControl("txtNumber") as TextBox).Text;
+            string password = (GridViewId.Rows[e.RowIndex].FindControl("txtPassword") as TextBox).Text;
+            int id = Convert.ToInt32(GridViewId.DataKeys[e.RowIndex].Values[0]); ;
+            Customer customer = new Customer(name,Convert.ToDateTime(dateofbirth), emailId, employmentType,int.Parse(salary), company, address,long.Parse(pincode),long.Parse(mobilenumber), password);
             string connectionString = @"Data Source=LAPTOP-S25DNCVE\SQLEXPRESS;Database=Project;Integrated Security=SSPI";
-            using (SqlConnection con = new SqlConnection(connectionString))
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Customer WHERE id = @CustomerId"))
+                using (SqlCommand command = new SqlCommand("sp_UpdateCustomers"))
                 {
-                    cmd.Parameters.AddWithValue("@CustomerId", customerId);
-                    cmd.Connection = con;
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@Name", customer.name);
+                    command.Parameters.AddWithValue("@DateOfBirth", customer.dateOfBirth);
+                    command.Parameters.AddWithValue("@EmailId", customer.emailID);
+                    command.Parameters.AddWithValue("@type", customer.employmentType);
+                    command.Parameters.AddWithValue("@salary", customer.monthlySalary);
+                    command.Parameters.AddWithValue("@company", customer.company);
+                    command.Parameters.AddWithValue("@address", customer.address);
+                    command.Parameters.AddWithValue("@pincode", customer.pincode);
+                    command.Parameters.AddWithValue("@mobilenumber",customer.mobileNumber);
+                    command.Parameters.AddWithValue("@password", customer.password);
+                    command.Connection = connection;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    connection.Close();
                 }
             }
-            this.BindGrid();
+            GridViewId.EditIndex = -1;
+            BindCustomerDetails();
         }
-        protected void RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void InsertClick(object sender, EventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != GridView1.EditIndex)
-            {
-                (e.Row.Cells[0].Controls[2] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";
-            }
+            string name = (GridViewId.FooterRow.FindControl("nameId") as TextBox).Text;
+            string dateofbirth = (GridViewId.FooterRow.FindControl("birthId") as TextBox).Text;
+            string emailId = (GridViewId.FooterRow.FindControl("emailId") as TextBox).Text;
+            string employmentType = (GridViewId.FooterRow.FindControl("typeId") as TextBox).Text;
+            string salary = (GridViewId.FooterRow.FindControl("salaryId") as TextBox).Text;
+            string company = (GridViewId.FooterRow.FindControl("companyId") as TextBox).Text;
+            string address = (GridViewId.FooterRow.FindControl("addressId") as TextBox).Text;
+            string pincode = (GridViewId.FooterRow.FindControl("pincodeId") as TextBox).Text;
+            string mobilenumber = (GridViewId.FooterRow.FindControl("mobileId") as TextBox).Text;
+            string password = (GridViewId.FooterRow.FindControl("PasswordId") as TextBox).Text;
+            Customer customer = new Customer(name, Convert.ToDateTime(dateofbirth), emailId, employmentType, int.Parse(salary), company, address, long.Parse(pincode), long.Parse(mobilenumber), password);
+            customerRepository.AddCustomer(customer);
+            GridViewId.EditIndex = -1;
+            BindCustomerDetails();
         }
     }
 }

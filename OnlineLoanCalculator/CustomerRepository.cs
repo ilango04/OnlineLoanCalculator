@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;                         //Data providers for SqlClient
+using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,6 +88,46 @@ namespace OnlineLoanCalculator
             {
                 command.Dispose();
                 connection.Close();
+            }
+        }
+        public bool DisplayDetails(GridView GridViewId)
+        {
+            string connectionString = @"Data Source=LAPTOP-S25DNCVE\SQLEXPRESS;Database=Project;Integrated Security=SSPI";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            using (SqlCommand sqlCommand = new SqlCommand("sp_DisplayCustomers", sqlConnection))
+            {
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+                DataTable dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                GridViewId.DataSource = dataTable;
+                GridViewId.DataBind();
+                return true;
+            }
+        }
+        public bool AddCustomer(Customer customer)
+        {
+            string connectionString = @"Data Source=LAPTOP-S25DNCVE\SQLEXPRESS;Database=Project;Integrated Security=SSPI";
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
+            using (SqlCommand sqlCommand = new SqlCommand("sp_InsertCustomerDetails", sqlConnection))
+            {
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@name",customer.name);
+                sqlCommand.Parameters.AddWithValue("@dateOfBirth", customer.dateOfBirth);
+                sqlCommand.Parameters.AddWithValue("@emailId", customer.emailID);
+                sqlCommand.Parameters.AddWithValue("@type", customer.employmentType);
+                sqlCommand.Parameters.AddWithValue("@salary", customer.monthlySalary);
+                sqlCommand.Parameters.AddWithValue("@company", customer.company);
+                sqlCommand.Parameters.AddWithValue("@address", customer.address);
+                sqlCommand.Parameters.AddWithValue("@pincode", customer.pincode);
+                sqlCommand.Parameters.AddWithValue("@mobileNumber",customer.mobileNumber);
+                sqlCommand.Parameters.AddWithValue("@password", customer.password);
+                sqlConnection.Open();
+                int rows = sqlCommand.ExecuteNonQuery();
+                if (rows > 0)
+                    return true;
+                else
+                    return false;
             }
         }
     }
