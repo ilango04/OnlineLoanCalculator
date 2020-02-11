@@ -8,23 +8,25 @@
                 <asp:TableCell>Name:</asp:TableCell>
                 <asp:TableCell><asp:TextBox ID="txtName" placeholder="Enter Full Name" size="16" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="nameRequiredFieldValidator" runat="server" ControlToValidate="txtName"   
-ErrorMessage="Please enter a user name" ForeColor="Red"></asp:RequiredFieldValidator>  
+ErrorMessage="Please enter a user name" ForeColor="Red"></asp:RequiredFieldValidator> 
+                         <asp:RegularExpressionValidator runat="server" ControlToValidate="txtName" ValidationExpression="^[a-zA-Z][a-zA-Z\\s]+$"
+    ErrorMessage="Invalid Name." ForeColor="Red" ></asp:RegularExpressionValidator>   
                     </asp:TableCell>
                 </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>DateOfBirth:</asp:TableCell>
-                <asp:TableCell><asp:TextBox ID="txtDate" placeholder="dd-mm-yyyy" TextMode="Date" size="16" runat="server"></asp:TextBox>
+                <asp:TableCell><asp:TextBox ID="txtDate" placeholder="dd-mm-yyyy"  size="16" runat="server"></asp:TextBox>
                 <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDate" ValidationExpression="(([0][1-9]|[2][0-9]|[3][0-1]|[1-9]|[1][0-9])/([0][1-9]|[1][0-2]|[1-9])/([1-2][0-9][0-9][0-9]|[0-9][0-9]))"
-    ErrorMessage="Invalid date format." ></asp:RegularExpressionValidator>
-                <asp:RequiredFieldValidator ID="dateRequiredFieldValidator" runat="server" ControlToValidate="txtName"   
-ErrorMessage="Please enter a user name" ForeColor="Red"></asp:RequiredFieldValidator>  
+    ErrorMessage="Invalid date format." ForeColor="Red" ></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="dateRequiredFieldValidator" runat="server" ControlToValidate="txtDate"   
+ErrorMessage="Please enter a dateofbirth" ForeColor="Red"></asp:RequiredFieldValidator>  
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>EmailID:</asp:TableCell>
                 <asp:TableCell><asp:TextBox ID="txtEmail" TextMode="Email" size="16" runat="server"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="emailRegularExpressionValidator" runat="server" ControlToValidate="txtEmail"   
- ErrorMessage="Invalid email" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">  
+ ErrorMessage="Invalid email" ForeColor="Red" ValidationExpression="/(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/">  
              </asp:RegularExpressionValidator>
                     <asp:RequiredFieldValidator ID="emailRequiredFieldValidator" runat="server" ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator>  
                 </asp:TableCell>
@@ -54,7 +56,7 @@ ErrorMessage="Please enter a user name" ForeColor="Red"></asp:RequiredFieldValid
                     <asp:TableCell>
                 <asp:TextBox ID="txtCompany" runat="server"></asp:TextBox>
                  <asp:RegularExpressionValidator ID="companyRegularExpressionValidator" size="14" runat="server" ControlToValidate="txtCompany"   
- ErrorMessage="invalid" ForeColor="Red" ValidationExpression="/^[a-zA-Z]+$/">  
+ ErrorMessage="invalid" ForeColor="Red" ValidationExpression="^[a-zA-Z][a-zA-Z\\s]+$">  
              </asp:RegularExpressionValidator>
               <asp:RequiredFieldValidator ID="companyRequiredFieldValidator" runat="server" ControlToValidate="txtCompany" ForeColor="Red"></asp:RequiredFieldValidator>
                     </asp:TableCell>
@@ -63,16 +65,13 @@ ErrorMessage="Please enter a user name" ForeColor="Red"></asp:RequiredFieldValid
                     <asp:TableCell>Address</asp:TableCell>
                     <asp:TableCell>
                 <asp:TextBox ID="txtAddress" TextMode="MultiLine" size="16" runat="server"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="addressRegularExpressionValidator" runat="server" ControlToValidate="txtAddress"   
- ErrorMessage="invalid address" ForeColor="Red" ValidationExpression="/^\d+\s[A-z]+\s[A-z]+/g">  
-             </asp:RegularExpressionValidator>
               <asp:RequiredFieldValidator ID="addressRequiredFieldValidator" runat="server" ControlToValidate="txtAddress" ForeColor="Red"></asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
                 <asp:TableRow>
                     <asp:TableCell>Pincode</asp:TableCell>
                     <asp:TableCell>
-                <asp:TextBox ID="txtPincode" TextMode="Number" size="12" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtPincode" TextMode="Number" MaxLength="6" size="6" runat="server"></asp:TextBox>
                 <asp:RegularExpressionValidator ID="pincodeRegularExpressionValidator" runat="server" ControlToValidate="txtPincode"   
  ErrorMessage="invalid pincode" ForeColor="Red" ValidationExpression="[0-9]{6}">  
              </asp:RegularExpressionValidator>

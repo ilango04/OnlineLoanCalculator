@@ -141,7 +141,7 @@ namespace OnlineLoanCalculator
         protected global::System.Web.UI.WebControls.RegularExpressionValidator companyRegularExpressionValidator;
 
         /// <summary>
-        /// companyRequiredFieldValidator  control.
+        /// companyRequiredFieldValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -157,15 +157,6 @@ namespace OnlineLoanCalculator
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAddress;
-
-        /// <summary>
-        /// addressRegularExpressionValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator addressRegularExpressionValidator;
 
         /// <summary>
         /// addressRequiredFieldValidator control.
